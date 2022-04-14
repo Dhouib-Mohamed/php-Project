@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ToDoController!{% endblock %}
+{% block body %}
+    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        div{
+            margin: 10px;
+        }
+    </style>
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice alert alert-primary" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="flash-notice alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1>
+    ToDo Liste :
+</h1>
+
+<ol>
+    {% for cle,element in app.session.get("todos") %}
+    <li>
+    <b>{{ cle }}</b><div>{{ element }}</div>
+    </li>
+    {% endfor %}
+</ol>
+
+{% endblock %}
